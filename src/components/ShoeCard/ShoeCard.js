@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import { formatPrice, pluralize, isNewShoe } from '../../utils';
-import Spacer from '../Spacer';
+import { COLORS, WEIGHTS } from "../../constants";
+import { formatPrice, pluralize, isNewShoe } from "../../utils";
+import Spacer from "../Spacer";
 
 const ShoeCard = ({
   slug,
@@ -43,12 +43,28 @@ const ShoeCard = ({
           <Price>{formatPrice(price)}</Price>
         </Row>
         <Row>
-          <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          <ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
         </Row>
+        {variant !== "default" && (
+          <Flag variant={variant}>
+            {variant === "on-sale" ? "Sale" : "Just released!"}
+          </Flag>
+        )}
       </Wrapper>
     </Link>
   );
 };
+
+const Flag = styled.div`
+  position: absolute;
+  padding: 7px 9px 9px 10px;
+  color: white;
+  font-weight: 700;
+  top: 20px;
+  right: -4px;
+  background-color: ${({ variant }) =>
+    variant === "on-sale" ? COLORS.primary : COLORS.secondary};
+`;
 
 const Link = styled.a`
   text-decoration: none;
@@ -56,9 +72,10 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
-flex: 0 1 340px;
-max-width: 340px;
-height: 312px;
+  flex: 0 1 340px;
+  max-width: 340px;
+  height: 312px;
+  position: relative;
 `;
 
 const ImageWrapper = styled.div`
@@ -66,7 +83,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-width: 100%;
+  width: 100%;
 `;
 
 const Row = styled.div`
