@@ -72,9 +72,6 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
-  flex: 0 1 340px;
-  max-width: 340px;
-  height: 312px;
   position: relative;
 `;
 
